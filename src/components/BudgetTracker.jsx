@@ -7,8 +7,13 @@ function BudgetTracker() {
   const [spent ,setspent] =useState('')
 
   async function fetchCategories() {
+     const token = await localStorage.getItem('token')
     try {
-      const res = await fetch("http://localhost:3000/budget");
+      const res = await fetch("http://localhost:3000/budget",
+        {
+          headers: {Authorization : `Bearer ${token}`}
+        }
+      );
       const data = await res.json();
 
       setCategories(data);
@@ -23,6 +28,7 @@ function BudgetTracker() {
 
   async function addCategory() {
     if (!newCategory.trim()) return;
+     const token = await localStorage.getItem('token')
 
     const category = {
       
@@ -34,7 +40,7 @@ function BudgetTracker() {
       const response = await fetch("http://localhost:3000/budget", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json",Authorization : `Bearer ${token}`
         },
         body: JSON.stringify(category),
       });

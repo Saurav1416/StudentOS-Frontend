@@ -5,13 +5,14 @@ function BudgetCategory({ category,fetchcategories }) {
   const [spent,setspent] = useState("")
 
   const sam = async() => {
+     const token = await localStorage.getItem('token')
     
     const a = Number(category.spent) + Number(spent)
     try {
        const response = await fetch('http://localhost:3000/budget',
         {
           method: 'PATCH',
-          headers : {"Content-Type" : "application/json"},
+          headers : {"Content-Type" : "application/json",Authorization : `Bearer ${token}`},
           body: 
             JSON.stringify(
               {
@@ -44,11 +45,14 @@ function BudgetCategory({ category,fetchcategories }) {
     
   }
    const bam = async() => {
+
+     const token = await localStorage.getItem('token')
+
     const a=0;
       const response = await fetch("http://localhost:3000/budget",
         {
           method: "PATCH",
-          headers : { "Content-Type": "application/json"},
+          headers : { "Content-Type": "application/json", Authorization : `Bearer ${token}`},
           body: JSON.stringify({
             name : category.name,
             spent:  Number(a)
