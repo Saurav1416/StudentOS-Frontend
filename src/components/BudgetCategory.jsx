@@ -1,8 +1,26 @@
+import { MoreHorizontal } from 'lucide-react'
 import {useState } from 'react'
+import { createPortal } from "react-dom";
+import Portal from './Portal';
 
 function BudgetCategory({ category,fetchcategories }) {
 
   const [spent,setspent] = useState("")
+  const [ispop, setispop]= useState(false)
+  const [menuPos, setMenuPos] = useState({
+  top: 0,
+  left: 0,
+});
+ const handleMenu = (e) => {                     // react passes synthetic event directly into func so if fucn expect it passes it without doing (e)=> handleMenu(e)
+  const rect = e.currentTarget.getBoundingClientRect();   //provides position of elt  when event fires (like click)
+
+  setMenuPos({
+    top: rect.bottom + 4,
+    left: rect.right-110 // menu width ≈ 110px
+  });
+
+  setispop((prev) => !prev);
+};
 
   const sam = async() => {
      const token = await localStorage.getItem('token')
@@ -94,15 +112,27 @@ function BudgetCategory({ category,fetchcategories }) {
 
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
 <div className="relative z-10  ">
-       <div className= "flex  justify-between"> <h3 className="text-xl font-bold text-white">
+       <div className= "flex  justify-between"> 
+       
+          <h3 className="text-xl font-bold text-white">
           {category.name}
-        </h3>
-        <button onClick={bam}
-        className="text-white/70 hover:cursor-pointer hover:scale-[1.04] hover:text-white hover:font-bold"
-        >
-          Clear
-        </button ></div>
-
+            </h3>
+          
+          
+          <div>
+            <button onClick={handleMenu }
+          >
+              <MoreHorizontal/>
+          </button>
+          {ispop && <Portal menuPos={menuPos} setispop={setispop} bam={bam}/>
+  }
+          </div>
+           {/* <button onClick={bam}
+            className="text-white/70 hover:cursor-pointer hover:scale-[1.04] hover:text-white hover:font-bold"
+            >
+              Clear
+          </button >  */}
+          </div>
         
          <div className="mt-4 flex justify-between items-center"> <span className="text-white/70 text-sm ">
             Total Spent
@@ -139,6 +169,7 @@ function BudgetCategory({ category,fetchcategories }) {
       </div>
 
     </div>
+    
   );
 }
 
