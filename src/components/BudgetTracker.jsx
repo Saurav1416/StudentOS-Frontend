@@ -96,7 +96,7 @@ function BudgetTracker() {
           <BudgetCategory
             key={i}
             category={cat}
-            fetchcategories={()=>fetchCategories()}
+            fetchCategories={()=>fetchCategories()}
           />
         ))}
       </div>

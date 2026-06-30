@@ -3,7 +3,7 @@ import {useState } from 'react'
 import { createPortal } from "react-dom";
 import Portal from './Portal';
 
-function BudgetCategory({ category,fetchcategories }) {
+function BudgetCategory({ category,fetchCategories }) {
 
   const [spent,setspent] = useState("")
   const [ispop, setispop]= useState(false)
@@ -56,7 +56,7 @@ function BudgetCategory({ category,fetchcategories }) {
     }
     finally{
       
-      fetchcategories()
+      fetchCategories()
       setspent("")
     }
   
@@ -124,7 +124,7 @@ function BudgetCategory({ category,fetchcategories }) {
           >
               <MoreHorizontal/>
           </button>
-          {ispop && <Portal menuPos={menuPos} setispop={setispop} bam={bam}/>
+          {ispop && <Portal menuPos={menuPos} setispop={setispop} bam={bam} category={category} fetchCategories={fetchCategories}/>
   }
           </div>
            {/* <button onClick={bam}

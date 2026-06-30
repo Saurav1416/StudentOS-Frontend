@@ -1,5 +1,28 @@
 import { createPortal } from "react-dom";
-function portal({menuPos,setispop,bam}){
+
+function portal({menuPos,setispop,bam,category,fetchCategories}){
+
+  const deletecat = async ()=> {
+    
+    const token = await localStorage.getItem('token')
+     const response = await fetch("http://localhost:3000/budget",
+      {
+        method: "DELETE",
+        headers: {"Content-Type":"application/json", Authorization:`Bearer ${token}`},
+        body: JSON.stringify({
+          name:category.name,
+          spent:category.spent
+        })
+      } )
+      const data = await response.json()
+      if(!data.success){
+        alert("data.message")
+      }
+      fetchCategories()
+      alert(data.message)
+
+      
+  }
 
     return (
         createPortal(
@@ -22,10 +45,12 @@ function portal({menuPos,setispop,bam}){
       </button>
 
       <button
-        onClick={() => setispop(false)}
+        onClick={() =>{ 
+          deletecat();
+          setispop(false)}}
         className="px-3 py-2 text-white hover:bg-gray-600"
       >
-        Close
+        Delete
       </button>
     </div>,
     document.getElementById("am")
