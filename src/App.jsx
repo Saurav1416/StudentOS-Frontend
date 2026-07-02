@@ -10,6 +10,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import  Signup  from "./components/Signup";
 import NotFound from "./components/Notfound";
 import Mainlayout from "./layouts/Mainlayout";
+import SubjectDetails from "./components/SubjectTracker";
+import SubjectTraker from "./components/SubjectTracker";
 
 function App() {
   return (
@@ -21,18 +23,20 @@ function App() {
         />
         <Route path="/signup" element={<Signup/>} />
 
-         <Route path="/" element={<Mainlayout />}>
+         <Route path="/" element={ <ProtectedRoute><Mainlayout />  </ProtectedRoute>}>
           <Route index element= {
-            <ProtectedRoute>
-            <Home/>
-            </ProtectedRoute>}/>
+            
+            <Home/>}/>
+            
            <Route path="*" element={
-          <ProtectedRoute>
-            <NotFound/>
-            </ProtectedRoute>}/>
+          
+            <NotFound/>}/>
+            <Route path="/subject" element={<SubjectTraker/>}/>
              </Route> 
         {/*  instead of making mainlayout and parent and child route we can also make sibling route and apply protected route to them so they redirect to /login  */}
         
+
+       
       </Routes>
     </BrowserRouter>
   );

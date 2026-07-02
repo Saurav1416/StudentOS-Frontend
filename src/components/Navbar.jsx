@@ -8,7 +8,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-15 py-4">
+    <nav className=" top-0 left-0 w-full z-50 px-15 py-4">
       <div className="grid grid-cols-3 items-center rounded-3xl border border-white/20 bg-white/10 backdrop-blur-lg shadow-2xl px-8 py-3">
 
         {/* Left Section */}
@@ -36,14 +36,14 @@ const Navbar = () => {
           </NavLink>
 
           <NavLink
-            to="/friends"
+            to="/subject"
             className={({ isActive }) =>
               isActive
                 ? "text-purple-300 font-semibold"
                 : "text-white hover:text-purple-300 transition"
             }
           >
-            Friends
+           Subjects
           </NavLink>
 
           <NavLink
@@ -65,7 +65,7 @@ const Navbar = () => {
                 : "text-white hover:text-purple-300 transition"
             }
           >
-            About
+           Subjects
           </NavLink>
         </div>
 
@@ -79,7 +79,7 @@ const Navbar = () => {
           </button>
 
           {showMenu && createPortal(
-            <div className=" fixed top-26 right-8 z-50 w-56 overflow-hidden rounded-2xl border border-white/20 bg-white/20 backdrop-blur-lg shadow-2xl ">
+            <div className="absolute top-26 right-8 z-50 w-56 overflow-hidden rounded-2xl border border-white/20 bg-white/20 backdrop-blur-lg shadow-2xl ">
               <button className="w-full px-5 py-4 text-left text-white hover:bg-white/10 transition">
                 Settings
               </button>

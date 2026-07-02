@@ -80,7 +80,7 @@ function BudgetCategory({ category,fetchCategories }) {
       )
       const data = await response.json()
       if( data.success){
-        fetchcategories()
+        fetchCategories()
         alert(`${category.name} reset to 0`)
       }else{
         alert(
@@ -103,6 +103,7 @@ function BudgetCategory({ category,fetchCategories }) {
       backdrop-blur-lg
       shadow-xl
       p-6
+      
       transition-all
       duration-300
       hover:bg-white/15
@@ -112,7 +113,7 @@ function BudgetCategory({ category,fetchCategories }) {
 
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
 <div className="relative z-10  ">
-       <div className= "flex  justify-between"> 
+       <div className= "flex  justify-between pb-6"> 
        
           <h3 className="text-xl font-bold text-white">
           {category.name}
@@ -121,6 +122,7 @@ function BudgetCategory({ category,fetchCategories }) {
           
           <div>
             <button onClick={handleMenu }
+            className="hover:cursor-pointer text-white"
           >
               <MoreHorizontal/>
           </button>

@@ -15,6 +15,10 @@ function BudgetTracker() {
         }
       );
       const data = await res.json();
+      if(!data.success){
+        console.log(data.message)
+        return;
+      }
 
       setCategories(data);
     } catch (err) {
@@ -66,8 +70,8 @@ function BudgetTracker() {
   }
 
   return (
-    <div className="p-6">
-      <div className="flex gap-3 mb-5">
+    <div className="p-6  mt-15">
+      <div className="flex gap-3 mb-7">
         <input
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
