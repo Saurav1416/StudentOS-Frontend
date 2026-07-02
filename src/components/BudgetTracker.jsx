@@ -20,7 +20,7 @@ function BudgetTracker() {
         return;
       }
 
-      setCategories(data);
+      setCategories(data.data);
     } catch (err) {
       console.log(err);
     }

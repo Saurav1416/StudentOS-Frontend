@@ -3,12 +3,12 @@ import { useState,useEffect } from "react";
 
 export default function SubjectTracker() {
     const [allsub,setallsub] = useState([])
-    const [semester,setsemester]= useState(6)
+    const [semester,setsemester]= useState(Number(1))
 
     const fetchsub= async ()=> {
         const token = await localStorage.getItem("token")
         
-        const response = await fetch (`http://localhost:8000/${semester}`,
+        const response = await fetch (`http://localhost:3000/subject/${semester}`,
             {
                 headers: {"Content-Type":"application/json", Authorization:`Bearer ${token}`}
             }
@@ -18,7 +18,7 @@ export default function SubjectTracker() {
             alert(data.message);
             return;
         }
-            setallsub(data.subject)    //if not using prev state then no need for (prev)=> ...  | Also here states changes so complete component renders again and screen data get updated
+            setallsub(data.subjects)    //if not using prev state then no need for (prev)=> ...  | Also here states changes so complete component renders again and screen data get updated
     }                                  //data.subject is an array of objects ( subject are stored as object)
     // const semesterchange = async ()=> {
     //     setsemester()
@@ -45,7 +45,7 @@ export default function SubjectTracker() {
           </button>
 
           <button className="glassButton">
-            Semester 3
+            Semester 1
           </button>
 
         </div>

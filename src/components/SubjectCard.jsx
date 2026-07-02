@@ -43,11 +43,11 @@ export default function SubjectCard( {sub}) {
           <div>
 
             <h2 className="text-2xl font-bold text-white">
-             sub.name
+             {sub.name}
             </h2>
 
             <p className="text-gray-300 mt-1">
-              sub.code
+              {sub.code}
             </p>
 
           </div>
@@ -82,7 +82,7 @@ export default function SubjectCard( {sub}) {
               </p>
 
               <h3 className="text-3xl font-bold text-white">
-                sub.totalAttendance
+                {sub.totalAttendance}
               </h3>
 
             </div>
@@ -102,7 +102,7 @@ export default function SubjectCard( {sub}) {
               </p>
 
               <h3 className="text-3xl font-bold text-pink-300">
-                sub.absent
+                {sub.absent}
               </h3>
 
             </div>
