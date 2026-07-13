@@ -91,7 +91,7 @@ export default function SubjectTracker() {
       <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-7">
 
        {allsub.map( (sub,index)=>(                          //sub is an object 
-        <SubjectCard sub={sub} key={index} />
+        <SubjectCard sub={sub} key={index} fetchsub={fetchsub} semester={semester} />
        )
     )}
        

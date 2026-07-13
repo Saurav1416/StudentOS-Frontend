@@ -1,7 +1,28 @@
 import { Users, UserX, Database } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
 
-export default function SubjectCard( {sub}) {
+export default function SubjectCard( {sub,fetchsub,semester}) {
+
+ const incrementabs= async()=>{
+  const token = localStorage.getItem("token")
+    const response = await fetch(`http://localhost:3000/subject/${semester}`,
+      {
+        method:'PATCH',
+        headers: { "Content-Type": "application/json", Authorization:`Bearer ${token}`},
+        body: JSON.stringify({
+          name:sub.name,
+          operation:"incrementabs"
+        })
+      }
+    )
+    const data = await response.json();
+    if(!data.success){
+      alert( `${data.message}`)
+    }else{
+       await fetchsub()
+      alert(`incremeted absents in ${sub.name}`)
+    }
+ }
   return (
     <div
       className="
@@ -124,6 +145,8 @@ export default function SubjectCard( {sub}) {
           transition
           hover:scale-110
           "
+
+          onClick={incrementabs}
         >
           +
         </button>
