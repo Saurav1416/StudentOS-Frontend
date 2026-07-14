@@ -1,7 +1,26 @@
 import { Users, UserX, Database } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
+import { useState } from "react";
+import Portalsubject from "./Portalsubject";
 
 export default function SubjectCard( {sub,fetchsub,semester}) {
+  const [ispop,setispop] = useState(false);
+   const [menuPos, setMenuPos] = useState({
+  top: 0,
+  left: 0,
+});
+
+  const handlemenu = (e)=> {
+    const rect = e.currentTarget.getBoundingClientRect();   //provides position of elt  when event fires (like click)
+
+  setMenuPos({
+    top: rect.bottom + 4,
+    left: rect.right-110 // menu width ≈ 110px
+  });
+
+  setispop((prev) => !prev);
+
+  }
 
  const incrementabs= async()=>{
   const token = localStorage.getItem("token")
@@ -75,10 +94,14 @@ export default function SubjectCard( {sub,fetchsub,semester}) {
 
         </div>
 
-        <MoreHorizontal
+        <button
+        onClick={handlemenu}
+        ><MoreHorizontal
           className="text-white/60 group-hover:text-white"
           size={26}
-        />
+        /></button>
+        {ispop &&   <Portalsubject semester={semester} menuPos={menuPos} setispop={setispop}  sub={sub} fetchsub={fetchsub}/>}
+
 
       </div>
 

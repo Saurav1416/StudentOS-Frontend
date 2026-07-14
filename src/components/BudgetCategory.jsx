@@ -22,7 +22,7 @@ function BudgetCategory({ category,fetchCategories }) {
   setispop((prev) => !prev);
 };
 
-  const sam = async() => {
+  const sam = async() => {               // this function help update the spending
      const token = await localStorage.getItem('token')
     
     const a = Number(category.spent) + Number(spent)
@@ -62,7 +62,7 @@ function BudgetCategory({ category,fetchCategories }) {
   
     
   }
-   const bam = async() => {
+   const bam = async() => {     // this function reset the spending 
 
      const token = await localStorage.getItem('token')
 
