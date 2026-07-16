@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { MoreHorizontal } from "lucide-react";
 import Logout from "./Logout";
 import { createPortal } from "react-dom";
+import logo from "../assets/images/logo.png"
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -13,12 +14,12 @@ const Navbar = () => {
 
         {/* Left Section */}
         <div className="justify-self-start flex items-center gap-4">
-          <div className="h-12 w-12 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xl">
-            F
+          <div className="h-12 w-12 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xl overflow-hidden">
+            <img src={logo}  className=" " /> 
           </div>
 
           <h1 className="text-2xl font-bold text-white">
-            Overall App
+            StudentOS
           </h1>
         </div>
 
